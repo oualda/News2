@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SettingsActivity"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Option 1 : Activer/Désactiver le mode sombre -->
+        <Switch
+            android:id="@+id/switchDarkMode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Mode sombre" />
+
+        <!-- Option 2 : Activer les notifications -->
+        <Switch
+            android:id="@+id/switchNotifications"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Recevoir des notifications" />
+
+        <!-- Option 3 : Sélection de la source RSS -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:text="Source RSS"
+            android:textSize="18sp" />
+
+        <Spinner
+            android:id="@+id/spinnerRssSource"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/rss_sources" />
+
+        <!-- Bouton Enregistrer -->
+        <Button
+            android:id="@+id/btnSaveSettings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Enregistrer les paramètres" />
+    </LinearLayout>
+</ScrollView>

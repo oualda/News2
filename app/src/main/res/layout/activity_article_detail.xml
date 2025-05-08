@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ArticleDetailActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- Contenu principal avec ScrollView -->
+        <ScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/commentLayout"
+            android:paddingBottom="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <!-- Toolbar -->
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/lavander"
+                    android:padding="10dp"
+                    app:title="Actualités"
+                    app:titleTextColor="@android:color/black"/>
+
+                <!-- Logo -->
+                <ImageView
+                    android:id="@+id/img_logo"
+                    android:layout_width="120dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"/>
+
+                <!-- Titre de l'article -->
+                <TextView
+                    android:id="@+id/articleTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/black"
+                    android:paddingBottom="8dp"/>
+
+                <!-- Date de publication -->
+                <TextView
+                    android:id="@+id/articleDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="@android:color/darker_gray"
+                    android:paddingBottom="12dp"/>
+
+                <!-- Contenu de l'article -->
+                <TextView
+                    android:id="@+id/articleWebView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:textSize="16dp"/>
+
+                <!-- Boutons Partager / J'aime -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="10dp">
+
+                    <Button
+                        android:id="@+id/shareButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:drawableEnd="@drawable/baseline_share_24"
+                        android:backgroundTint="@color/dark_gray"
+                        android:layout_marginEnd="10dp"/>
+
+                    <Button
+                        android:id="@+id/likeButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:drawableEnd="@drawable/baseline_thumb_up_24"
+                        android:backgroundTint="@color/dark_gray"
+                        android:layout_marginEnd="10dp"/>
+
+                    <TextView
+                        android:id="@+id/likeCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textSize="16sp"
+                        android:background="@drawable/rounded_textview"
+                        android:padding="5dp"/>
+
+                    <Button
+                        android:id="@+id/readMoreButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:drawableEnd="@drawable/baseline_keyboard_double_arrow_right_24"
+                        android:backgroundTint="@color/dark_gray"
+                        android:text="Lire sur le site"
+                        android:textSize="16sp"/>
+                </LinearLayout>
+
+                <!-- Section des commentaires -->
+                <TextView
+                    android:id="@+id/commentsSection"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Commentaires :"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/black"
+                    android:layout_marginTop="10dp"/>
+
+                <!-- RecyclerView pour les commentaires -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewComments"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:padding="8dp"/>
+            </LinearLayout>
+        </ScrollView>
+
+        <!-- Zone de saisie du commentaire (fixe en bas) -->
+        <LinearLayout
+            android:id="@+id/commentLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal"
+            android:background="#EEEEEE"
+            android:padding="8dp"
+            android:elevation="8dp">
+
+            <EditText
+                android:id="@+id/commentInput"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Écrire un commentaire..."
+                android:textSize="16sp"
+                android:background="@android:drawable/editbox_background"/>
+
+            <Button
+                android:id="@+id/postCommentButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableEnd="@drawable/baseline_send_24"
+                android:backgroundTint="@color/lavander"
+                android:layout_marginStart="8dp"
+                android:text="Envoyer"/>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <!-- Menu de navigation -->
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigation_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/drawer_menu"/>
+</androidx.drawerlayout.widget.DrawerLayout>

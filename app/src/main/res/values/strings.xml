@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">News</string>
+    <string name="default_web_client_id">AIzaSyDpv5ylMhsFKt0XiJ2UxhDfWcnJAPK4GLA</string>
+    <string name="client_id">556648250680-9icspermona61pqrd2ip91jubenevq0u.apps.googleusercontent.com</string>
+    <string name="navigation_drawer_open">Open</string>
+    <string name="navigation_drawer_close">Close</string>
+    <string-array name="rss_sources">
+        <item>Mosaique FM</item>
+        <item>Tuniscope</item>
+        <item>BBC News</item>
+    </string-array>
+    <string name="title_activity_account_bottom_sheet">AccountBottomSheet</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+
+</resources>

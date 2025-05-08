@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="10dp">
+
+    <!-- Image de profil de l'utilisateur -->
+    <ImageView
+        android:id="@+id/imageProfile"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="10dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_user"  />
+
+    <!-- Contenu du commentaire -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Nom de l'utilisateur -->
+        <TextView
+            android:id="@+id/textUsername"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nom de l'utilisateur"
+            android:textStyle="bold"
+            android:textColor="#000"
+            android:textSize="16sp" />
+
+        <!-- Commentaire -->
+        <TextView
+            android:id="@+id/textComment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Contenu du commentaire"
+            android:textColor="#333"
+            android:textSize="14sp" />
+    </LinearLayout>
+</LinearLayout>
