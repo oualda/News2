@@ -1,38 +1,149 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp"
+    android:background="#FFFFFF">
+
+    <!-- Barre supérieure avec le titre -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarCompte"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/lavander"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:elevation="4dp"
+        android:minHeight="?attr/actionBarSize"
+        app:title="حسابي"
+        app:titleTextColor="@android:color/white" />
+<ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- Infos utilisateur -->
-    <TextView
-        android:id="@+id/txtNom"
-        android:textSize="18sp"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone" />
+        android:padding="16dp">
 
-    <TextView
-        android:id="@+id/txtEmail"
-        android:textSize="18sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone" />
+        <!-- Zone Compte -->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:padding="8dp">
 
-    <!-- Boutons pour login/signup -->
-    <Button
-        android:id="@+id/btnLogin"
-        android:text="Se connecter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"/>
+            <ImageView
+                android:id="@+id/imgProfile"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:src="@drawable/ic_account"
+                android:layout_marginEnd="16dp" />
 
-    <Button
-        android:id="@+id/btnRegister"
-        android:text="S'inscrire"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"/>
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
 
+                <TextView
+                    android:id="@+id/txtNom"
+                    android:text="الاسم"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/txtEmail"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="البريد الإلكتروني"
+                    android:textSize="14sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Boutons si non connecté -->
+        <LinearLayout
+            android:id="@+id/btnsConnexion"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="8dp">
+
+            <Button
+                android:id="@+id/btnConnexion"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:backgroundTint="@color/lavander"
+                android:text="تسجيل الدخول"
+                android:layout_marginEnd="8dp"
+                android:visibility="gone"/>
+
+            <Button
+                android:id="@+id/btnInscription"
+                android:backgroundTint="@color/lavander"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="حساب جديد"
+                android:visibility="gone"/>
+        </LinearLayout>
+
+
+
+        <!-- Menu compte (favoris, تفاعلات, إعدادات...) -->
+        <TextView
+            android:text="الإعدادات"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Exemple de ligne paramètre -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingVertical="12dp"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:src="@drawable/ic_star"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginEnd="16dp" />
+
+            <TextView
+                android:text="المفضلة"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <!-- Répète pour les autres éléments -->
+        <LinearLayout android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="12dp"
+            android:gravity="center_vertical">
+
+            <ImageView android:src="@drawable/baseline_chat_bubble_24"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginEnd="16dp" />
+
+            <TextView android:text="التفاعلات"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <!-- Ajouter d'autres réglages comme : تعديل المصادر، الوضع الليلي... -->
+
+    </LinearLayout>
+</ScrollView>
 </LinearLayout>

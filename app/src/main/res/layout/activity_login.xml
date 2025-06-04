@@ -1,16 +1,27 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp"
-    android:background="@android:color/white"
-    tools:context=".LoginActivity">
+    android:background="#FFFFFF">
 
+        <!-- Barre supérieure avec le titre -->
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbarCompte"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/lavander"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            android:elevation="4dp"
+            android:minHeight="?attr/actionBarSize"
+            app:title="تسجيل الدخول"
+            app:titleTextColor="@android:color/white" />
 
-
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
         <EditText
             android:id="@+id/editEmail"
             android:hint="Email"
@@ -27,12 +38,20 @@
         <Button
             android:id="@+id/btnLogin"
             android:text="Connexion Email"
+            android:backgroundTint="@color/lavander"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
+                <Button
+                    android:id="@+id/btnRegister"
+                    android:text="Inscription Email"
+                    android:backgroundTint="@color/lavander"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
 
         <Button
             android:id="@+id/btnGoogle"
             android:text="Connexion Google"
+            android:backgroundTint="@color/dark_gray"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
@@ -40,10 +59,11 @@
             android:id="@+id/btnFacebook"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="Connexion Facebook"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"/>
 
 
 
-
+</LinearLayout>
 </LinearLayout>

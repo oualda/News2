@@ -6,8 +6,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
@@ -133,6 +136,35 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
 
             context.startActivity(intent);
         });
+
+        holder.saveButton.setOnClickListener(v -> {
+            String title = newsItem.getTitle();
+            String date = (newsItem.getPubDate() != null) ? newsItem.getPubDate().toString() : null;
+            String link = newsItem.getLink();
+            String image = (imageFromDescription != null) ? imageFromDescription : imageUrl;
+
+            // Vérifier que les champs essentiels ne sont pas null
+            if (title == null || title.isEmpty() || date == null || date.isEmpty() || link == null || link.isEmpty()) {
+                Log.e("SaveError", "Données manquantes : " + title + " | " + date + " | " + link);
+                Toast.makeText(context, "Erreur : données article incomplètes", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            ArticleEntity savedArticle = new ArticleEntity();
+            savedArticle.title = title;
+            savedArticle.date = date;
+            savedArticle.link = link;
+            savedArticle.imageUrl = image;
+
+            new Thread(() -> {
+                AppDatabase db = AppDatabase.getInstance(context);
+                db.articleDao().insert(savedArticle);
+            }).start();
+
+            Toast.makeText(context, "Article sauvegardé pour lecture hors ligne", Toast.LENGTH_SHORT).show();
+
+        });
+
     }
 
     @Override
@@ -154,6 +186,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
     static class NewsViewHolder extends RecyclerView.ViewHolder {
         TextView title, date;
         ImageView newsImage, newsSourceLogo;
+        ImageButton saveButton;
 
         NewsViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -161,6 +194,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
             date = itemView.findViewById(R.id.newsDate);
             newsImage = itemView.findViewById(R.id.newsImage);
             newsSourceLogo = itemView.findViewById(R.id.newsSourceLogo);
+            saveButton = itemView.findViewById(R.id.saveButton);
         }
     }
 }

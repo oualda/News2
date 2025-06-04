@@ -81,6 +81,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Intent intent = new Intent(this,CompteActivity.class);
                 startActivity(intent);
             }
+            if(id==R.id.savedbutton){
+                Intent intent= new Intent (this,SavedArticlesActivity.class);
+                startActivity(intent);
+            }
             /*switch (item.getItemId()) {
                 case R.id.navigation_resources:
                     // Affiche la page d'accueil

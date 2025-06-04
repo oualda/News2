@@ -18,4 +18,8 @@
         android:id="@+id/navigation_resources"
         android:icon="@drawable/ic_resources"
         android:title="Ressources" />
+    <item
+        android:id="@+id/savedbutton"
+        android:icon="@drawable/pin_24"
+        android:title="Enregistré"/>
 </menu>

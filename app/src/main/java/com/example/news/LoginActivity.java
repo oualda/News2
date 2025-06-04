@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,12 +25,18 @@ public class LoginActivity extends AppCompatActivity {
 
     private GoogleSignInClient googleSignInClient;
     private FirebaseAuth firebaseAuth;
+    EditText editEmail,editPassword;
+    Button btnLogin,btnRegister;
     private static final int RC_SIGN_IN = 100; // Code de requête pour Google Sign-in
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        editEmail=findViewById(R.id.editEmail);
+        editPassword=findViewById(R.id.editPassword);
+        btnLogin=findViewById(R.id.btnLogin);
+        btnRegister=findViewById(R.id.btnRegister);
 
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -48,7 +55,16 @@ public class LoginActivity extends AppCompatActivity {
 
         // Connexion avec Google
         Button googleSignInButton = findViewById(R.id.btnGoogle);
-        googleSignInButton.setOnClickListener(v -> signInWithGoogle());
+        googleSignInButton.setOnClickListener(v -> {
+            signInWithGoogle();
+
+        });
+        btnLogin.setOnClickListener(v -> loginUser());
+        btnRegister.setOnClickListener(v -> {
+            Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+            startActivity(intent);
+        });
+
     }
 
     private void signInWithGoogle() {
@@ -91,9 +107,30 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void goToArticleDetail() {
-        //Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-        //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-        //startActivity(intent);
+        Intent intent = new Intent(LoginActivity.this, CompteActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
         finish(); // Fermer l'activité pour éviter un retour en arrière
+    }
+
+    private void loginUser() {
+        String email = editEmail.getText().toString();
+        String password = editPassword.getText().toString();
+
+        if (email.isEmpty() || password.isEmpty()) {
+            Toast.makeText(this, "Tous les champs sont requis", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        firebaseAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        Toast.makeText(this, "Connexion réussie", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(LoginActivity.this, CompteActivity.class));
+                        finish();
+                    } else {
+                        Toast.makeText(this, "Erreur : " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 }
